@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Zailet App</string>
+    <string name="selected">SELECTED</string>
+    <string name="not_selected">NOT SELECTED</string>
+</resources>

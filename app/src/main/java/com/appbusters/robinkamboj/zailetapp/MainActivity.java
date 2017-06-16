@@ -1,0 +1,64 @@
+package com.appbusters.robinkamboj.zailetapp;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
+
+import com.appbusters.robinkamboj.zailetapp.model.topics;
+import com.appbusters.robinkamboj.zailetapp.model.topicsResponse;
+import com.appbusters.robinkamboj.zailetapp.rest.ApiClient;
+import com.appbusters.robinkamboj.zailetapp.rest.ApiInterface;
+import com.appbusters.robinkamboj.zailetapp.view.adapters.TopicsAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity {
+
+    private ApiInterface apiInterface;
+    private List<topics> list = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private TopicsAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+//        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<topicsResponse> call = apiInterface.getTopics(1);
+
+        if(call!=null){
+            call.enqueue(new Callback<topicsResponse>() {
+                @Override
+                public void onResponse(Call<topicsResponse> call, Response<topicsResponse> response) {
+                   for(topics topic : response.body().getResult()){
+                       list.add(topic);
+                       Log.e("topic is ", topic.getInterest());
+                   }
+                   if(list.size()>1){
+                       Log.e("RV SET?", "ADAPTER SET, TRUE");
+                       adapter = new TopicsAdapter(list, getApplicationContext());
+                       recyclerView.setAdapter(adapter);
+                   }
+                }
+
+                @Override
+                public void onFailure(Call<topicsResponse> call, Throwable t) {
+
+                }
+            });
+        }
+    }
+}
