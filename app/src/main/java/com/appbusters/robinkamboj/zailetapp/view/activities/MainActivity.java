@@ -1,5 +1,6 @@
-package com.appbusters.robinkamboj.zailetapp;
+package com.appbusters.robinkamboj.zailetapp.view.activities;
 
+import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.appbusters.robinkamboj.zailetapp.R;
 import com.appbusters.robinkamboj.zailetapp.model.topics;
 import com.appbusters.robinkamboj.zailetapp.model.topicsResponse;
 import com.appbusters.robinkamboj.zailetapp.rest.ApiClient;
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please select " + (10-adapter.selectedInterests.size()) + " more topics", Toast.LENGTH_SHORT).show();
                     }
                     else if(adapter.selectedInterests.size()>=10){
-                        Toast.makeText(getApplicationContext(), "Proceeding B)", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, PostsActivity.class));
                     }
                 }
             }

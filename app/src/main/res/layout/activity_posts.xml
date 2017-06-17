@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
-                android:text="Select Topics"
+                android:text="Your Feeds"
                 android:textColor="#FFF"
                 android:fontFamily="cursive"
                 android:textSize="20sp"
@@ -66,7 +66,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="..while the topics are loading."
+                    android:text="..while the posts are loading."
                     android:fontFamily="casual"
                     android:gravity="center_horizontal"
                     android:padding="15sp"
@@ -95,16 +95,7 @@
 
                 </android.support.v7.widget.RecyclerView>
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Proceed"
-                    android:textColor="@color/white"
-                    android:background="@color/colorPrimary"
-                    android:id="@+id/proceed"/>
-
             </LinearLayout>
-
 
         </FrameLayout>
     </LinearLayout>
