@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
+import jp.wasabeef.glide.transformations.gpu.VignetteFilterTransformation;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsHolder>{
 
@@ -44,7 +45,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsHolder>{
         String postCover = "http://zailet.com/" + list.get(position).getPost_info().getCover();
         Glide.with(parentContext)
                 .load(postCover)
-                .bitmapTransform(new BrightnessFilterTransformation(parentContext, 0.6f))
+                .bitmapTransform(new VignetteFilterTransformation(parentContext))
                 .into(holder.postCover);
         String authorCover = "http://zailet.com/" + list.get(position).getAuthor_info().getDp();
         Glide.with(parentContext)
