@@ -26,7 +26,6 @@ public class TopicsAdapter extends RecyclerView.Adapter<topicsHolder>{
     private Context context, parentContext;
     private List<Boolean> isFollowing = new ArrayList<>();
     public List<String> selectedInterests = new ArrayList<>();
-    public ArrayList<Integer> selectedIDs = new ArrayList<>();
 
     public TopicsAdapter(List<topics> list, Context context) {
         this.list = list;
