@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.appbusters.robinkamboj.zailetapp.model.topics;
 import com.appbusters.robinkamboj.zailetapp.model.topicsResponse;
@@ -64,8 +65,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(adapter!=null){
                     Log.e("SIZE", adapter.selectedInterests.size() + " ");
-                    if(adapter.selectedInterests.size()>0 && adapter.selectedInterests.size()<10){
-                        Snackbar.make(coordinatorLayout, "Please select " + (10-adapter.selectedInterests.size()) + " more topics", Snackbar.LENGTH_SHORT).show();
+                    if(adapter.selectedInterests.size()>=0 && adapter.selectedInterests.size()<10){
+                        Toast.makeText(getApplicationContext(), "Please select " + (10-adapter.selectedInterests.size()) + " more topics", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(adapter.selectedInterests.size()>=10){
+                        Toast.makeText(getApplicationContext(), "Proceeding B)", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

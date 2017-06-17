@@ -91,24 +91,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="0sp"
                     android:layout_weight="1"
-                    android:layout_marginBottom="50sp"
                     android:id="@+id/recyclerview">
 
                 </android.support.v7.widget.RecyclerView>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Proceed"
+                    android:textColor="@color/white"
+                    android:background="@color/colorPrimary"
+                    android:id="@+id/proceed"/>
 
             </LinearLayout>
 
 
         </FrameLayout>
     </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:text="Proceed"
-        android:layout_gravity="bottom"
-        android:textColor="@color/white"
-        android:background="@color/colorPrimary"
-        android:id="@+id/proceed"/>
 
 </android.support.design.widget.CoordinatorLayout>
