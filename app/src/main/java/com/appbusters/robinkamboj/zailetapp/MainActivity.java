@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.appbusters.robinkamboj.zailetapp.model.topics;
 import com.appbusters.robinkamboj.zailetapp.model.topicsResponse;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TopicsAdapter adapter;
     private CoordinatorLayout coordinatorLayout;
+    private LinearLayout alternateLayout, recyclerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
+        alternateLayout = (LinearLayout) findViewById(R.id.layout_alternate);
+        recyclerLayout = (LinearLayout) findViewById(R.id.rv_layout);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
 //        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(list.size()>1){
                         Log.e("RV SET?", "ADAPTER SET, TRUE");
+                        alternateLayout.setVisibility(View.GONE);
+                        recyclerLayout.setVisibility(View.VISIBLE);
                         adapter = new TopicsAdapter(list, getApplicationContext());
                         recyclerView.setAdapter(adapter);
                     }
