@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.appbusters.robinkamboj.zailetapp.model.topics;
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private TopicsAdapter adapter;
     private CoordinatorLayout coordinatorLayout;
     private LinearLayout alternateLayout, recyclerLayout;
+    private Button proceed;
+
+    private List<String> selectedInterests = new ArrayList<>();
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,27 +47,43 @@ public class MainActivity extends AppCompatActivity {
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
         alternateLayout = (LinearLayout) findViewById(R.id.layout_alternate);
         recyclerLayout = (LinearLayout) findViewById(R.id.rv_layout);
+        proceed = (Button) findViewById(R.id.proceed);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
 //        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManager);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
+        proceedOnClick();
         callTopics();
     }
 
-    private void callTopics(){
+    private void proceedOnClick(){
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(adapter!=null){
+                    Log.e("SIZE", adapter.selectedInterests.size() + " ");
+                    if(adapter.selectedInterests.size()>0 && adapter.selectedInterests.size()<10){
+                        Snackbar.make(coordinatorLayout, "Please select " + (10-adapter.selectedInterests.size()) + " more topics", Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+    }
+
+    private void callTopics() {
         Call<topicsResponse> call = apiInterface.getTopics(1);
 
-        if(call!=null){
+        if (call != null) {
             call.enqueue(new Callback<topicsResponse>() {
                 @Override
                 public void onResponse(Call<topicsResponse> call, Response<topicsResponse> response) {
-                    for(topics topic : response.body().getResult()){
+                    for (topics topic : response.body().getResult()) {
                         list.add(topic);
                         Log.e("topic is ", topic.getInterest());
                     }
-                    if(list.size()>1){
+                    if (list.size() > 1) {
                         Log.e("RV SET?", "ADAPTER SET, TRUE");
                         alternateLayout.setVisibility(View.GONE);
                         recyclerLayout.setVisibility(View.VISIBLE);
