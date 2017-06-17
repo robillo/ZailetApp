@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:text="Proceed"
                     android:textColor="@color/white"
-                    android:background="@color/colorPrimaryDark"/>
+                    android:background="@color/colorPrimary"/>
 
             </LinearLayout>
 

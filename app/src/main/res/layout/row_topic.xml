@@ -61,7 +61,7 @@
             android:textColor="@color/white"
             android:layout_gravity="bottom"
             android:gravity="center"
-            android:background="@color/colorPrimary" />
+            android:background="@color/colorAccent" />
 
     </LinearLayout>
 
