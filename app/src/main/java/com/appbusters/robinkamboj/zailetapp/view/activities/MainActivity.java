@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please select " + (10-adapter.selectedInterests.size()) + " more topics", Toast.LENGTH_SHORT).show();
                     }
                     else if(adapter.selectedInterests.size()>=10){
-                        startActivity(new Intent(MainActivity.this, PostsActivity.class));
+                        Intent i = new Intent(MainActivity.this, PostsActivity.class);
+                        i.putStringArrayListExtra("selectedItems", (ArrayList<String>) adapter.selectedInterests);
+                        startActivity(i);
                     }
                 }
             }
