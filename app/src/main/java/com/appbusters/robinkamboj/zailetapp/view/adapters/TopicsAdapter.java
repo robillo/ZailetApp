@@ -22,6 +22,7 @@ public class TopicsAdapter extends RecyclerView.Adapter<topicsHolder>{
     private Context context, parentContext;
     private List<Boolean> isFollowing = new ArrayList<>();
     public List<String> selectedInterests = new ArrayList<>();
+    public ArrayList<Integer> selectedIDs = new ArrayList<>();
 
     public TopicsAdapter(List<topics> list, Context context) {
         this.list = list;
@@ -60,31 +61,31 @@ public class TopicsAdapter extends RecyclerView.Adapter<topicsHolder>{
             public void onClick(View view) {
                 if(!isFollowing.get(position) && holder.select.getText().equals(context.getString(R.string.not_selected))){
                     isFollowing.set(position, true);
-                    if(!selectedInterests.contains(list.get(position).getInterest())){
-                        selectedInterests.add(list.get(position).getInterest());
+                    if(!selectedInterests.contains(list.get(position).getId())){
+                        selectedInterests.add(list.get(position).getId());
                     }
                     holder.select.setText(context.getString(R.string.selected));
                     holder.select.setBackgroundColor(context.getResources().getColor(R.color.black));
                 }
                 else if(isFollowing.get(position) && holder.select.getText().equals(context.getString(R.string.selected))){
                     isFollowing.set(position, false);
-                    if(selectedInterests.contains(list.get(position).getInterest())){
-                        selectedInterests.remove(list.get(position).getInterest());
+                    if(selectedInterests.contains(list.get(position).getId())){
+                        selectedInterests.remove(list.get(position).getId());
                     }
                     holder.select.setText(context.getString(R.string.not_selected));
                     holder.select.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
 //                    holder.setFollowersCount(item.getFollowersCount());
                 }else if(holder.select.getText().equals(context.getString(R.string.selected))){
                     isFollowing.set(position, false);
-                    if(selectedInterests.contains(list.get(position).getInterest())){
-                        selectedInterests.remove(list.get(position).getInterest());
+                    if(selectedInterests.contains(list.get(position).getId())){
+                        selectedInterests.remove(list.get(position).getId());
                     }
                     holder.select.setText(context.getString(R.string.not_selected));
                     holder.select.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
                 }else{
                     isFollowing.set(position, true);
-                    if(!selectedInterests.contains(list.get(position).getInterest())){
-                        selectedInterests.add(list.get(position).getInterest());
+                    if(!selectedInterests.contains(list.get(position).getId())){
+                        selectedInterests.add(list.get(position).getId());
                     }
                     holder.select.setText(context.getString(R.string.selected));
                     holder.select.setBackgroundColor(context.getResources().getColor(R.color.black));

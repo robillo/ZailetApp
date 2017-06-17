@@ -15,6 +15,5 @@ public interface ApiInterface {
     Call<topicsResponse> getTopics(@Query("get_topics") int page);
 
     @GET("get_data.php")
-    Call<postsResponseResponse> getPostsByID(@Query("topics_info") int page, @Query("id") int id);
-
+    Call<postsResponseResponse> getPosts(@Query("topics_info") int page);
 }
