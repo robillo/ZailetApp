@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#BF360C</color>
     <color name="colorAccent">#D50000</color>
     <color name="white">#FFFFFF</color>
-    <color name="black">#FFCA28</color>
+    <color name="gray">#454545</color>
+    <color name="colorBlackShade">#000000</color>
+    <color name="black">#FFB300</color>
     <color name="half_tx">#27000000</color>
+    <color name="tv_post">#52454545</color>
 </resources>
