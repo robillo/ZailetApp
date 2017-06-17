@@ -38,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout alternateLayout, recyclerLayout;
     private Button proceed;
 
-    private List<String> selectedInterests = new ArrayList<>();
-    private int count = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
