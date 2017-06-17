@@ -16,6 +16,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
+import jp.wasabeef.glide.transformations.gpu.SepiaFilterTransformation;
+import jp.wasabeef.glide.transformations.gpu.VignetteFilterTransformation;
+
 public class TopicsAdapter extends RecyclerView.Adapter<topicsHolder>{
 
     private List<topics> list = new ArrayList<>();
@@ -45,7 +49,9 @@ public class TopicsAdapter extends RecyclerView.Adapter<topicsHolder>{
         holder.topic.setText(list.get(position).getInterest());
         String url = "http://zailet.com/" + list.get(position).getCover();
         Log.e("URL " + position, url);
-        Glide.with(parentContext).load(url).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.topicImage);
+        Glide.with(parentContext).load(url)
+                .bitmapTransform(new BrightnessFilterTransformation(parentContext, -0.6f))
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.topicImage);
 
         if(!isFollowing.get(position) && holder.select.getText().equals(context.getString(R.string.selected))){
             holder.select.setText(context.getString(R.string.not_selected));
@@ -56,7 +62,7 @@ public class TopicsAdapter extends RecyclerView.Adapter<topicsHolder>{
             holder.select.setBackgroundColor(context.getResources().getColor(R.color.black));
         }
 
-        holder.select.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!isFollowing.get(position) && holder.select.getText().equals(context.getString(R.string.not_selected))){

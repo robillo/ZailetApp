@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appbusters.robinkamboj.zailetapp.R;
@@ -19,7 +20,7 @@ public class topicsHolder extends RecyclerView.ViewHolder{
 
     public CircleImageView topicImage;
     public TextView topic;
-    public Button select;
+    public TextView select;
     public CardView cardView;
 
     public topicsHolder(View itemView) {
@@ -27,7 +28,7 @@ public class topicsHolder extends RecyclerView.ViewHolder{
         context = itemView.getContext();
         topicImage = (CircleImageView) itemView.findViewById(R.id.topic_imageview);
         topic = (TextView) itemView.findViewById(R.id.topic);
-        select = (Button) itemView.findViewById(R.id.select);
+        select = (TextView) itemView.findViewById(R.id.select);
         cardView = (CardView) itemView.findViewById(R.id.cardView);
     }
 }

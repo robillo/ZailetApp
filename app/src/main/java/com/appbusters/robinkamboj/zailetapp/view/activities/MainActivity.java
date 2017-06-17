@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerLayout = (LinearLayout) findViewById(R.id.rv_layout);
         proceed = (Button) findViewById(R.id.proceed);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
 //        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManager);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
