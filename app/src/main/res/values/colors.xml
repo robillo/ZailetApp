@@ -9,4 +9,5 @@
     <color name="black">#FFB300</color>
     <color name="half_tx">#27000000</color>
     <color name="tv_post">#52454545</color>
+    <color name="like_comment">#f1f1f1</color>
 </resources>
