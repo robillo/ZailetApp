@@ -12,6 +12,8 @@ import com.appbusters.robinkamboj.zailetapp.model.postsResponse;
 import com.appbusters.robinkamboj.zailetapp.view.holders.PostsHolder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsHolder>{
 
     private List<postsResponse> list = new ArrayList<>();
     private Context context, parentContext;
+    private List<Boolean> isFollowing = new ArrayList<>();
 
     public PostsAdapter(List<postsResponse> list, Context context) {
         this.list = list;
@@ -33,11 +36,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsHolder>{
     public PostsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         parentContext = parent.getContext();
         View v = LayoutInflater.from(parentContext).inflate(R.layout.row_post, parent, false);
+        for(int i = 0; i<=list.size(); i++){
+            isFollowing.add(false);
+        }
         return new PostsHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(PostsHolder holder, int position) {
+    public void onBindViewHolder(final PostsHolder holder, final int position) {
         holder.author.setText(list.get(position).getAuthor_info().getName());
         holder.postTitle.setText(list.get(position).getPost_info().getTitle());
         holder.time.setText(list.get(position).getPost_info().getTime());
@@ -52,6 +58,25 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsHolder>{
                 .load(authorCover)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.circleImageView);
+
+        if(isFollowing.get(position) && !holder.likeButton.isLiked()){
+            holder.likeButton.setLiked(true);
+        }
+        if(!isFollowing.get(position) && holder.likeButton.isLiked()){
+            holder.likeButton.setLiked(false);
+        }
+
+        holder.likeButton.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                isFollowing.set(position, true);
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+                isFollowing.set(position, false);
+            }
+        });
     }
 
     @Override
