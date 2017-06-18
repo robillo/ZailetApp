@@ -18,6 +18,7 @@ import com.like.OnLikeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.ColorFilterTransformation;
 import jp.wasabeef.glide.transformations.gpu.BrightnessFilterTransformation;
 import jp.wasabeef.glide.transformations.gpu.VignetteFilterTransformation;
 
@@ -51,7 +52,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsHolder>{
         String postCover = "http://zailet.com/" + list.get(position).getPost_info().getCover();
         Glide.with(parentContext)
                 .load(postCover)
-                .bitmapTransform(new VignetteFilterTransformation(parentContext))
+                .bitmapTransform(new BrightnessFilterTransformation(parentContext, -0.3f))
                 .into(holder.postCover);
         String authorCover = "http://zailet.com/" + list.get(position).getAuthor_info().getDp();
         Glide.with(parentContext)

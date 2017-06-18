@@ -70,7 +70,7 @@
                 android:textStyle="bold"
                 android:text="Post Title"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
         </FrameLayout>
 
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:padding="13sp"
-            android:fontFamily="sans-serif-smallcaps"
+            android:fontFamily="serif-monospace"
             android:text="Post description will go here Post description will go here Post description will go here Post description will go here Post description will go here Post description will go here."
             android:textColor="@color/gray"
             android:textSize="15sp" />
